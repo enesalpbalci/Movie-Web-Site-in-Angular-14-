@@ -1,8 +1,13 @@
 <div div class="list-group">
-  <a href="#" class="list-group-item list-group-item-active active"
+  <a (click)="selectCategory()" [class.active]="displayAll" href="#" class="list-group-item list-group-item-active active"
     >Tüm Kategoriler</a
   >
-</div>
-<div class="list-group" *ngFor="let category of categories">
-  <a href="#" class="list-group-item list-group-item-active">{{ category.name }}</a>
+  <a
+    *ngFor="let category of categories"
+    href="#"
+    (click)="selectCategory(category)"
+    [class.active]="!displayAll && selectedCategory.id == category.id"
+    class="list-group-item  list-group-item-active active"
+    >{{ category.name }}</a
+  >
 </div>

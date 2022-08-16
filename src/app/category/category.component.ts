@@ -15,6 +15,20 @@ export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
   categoryRespositery:CategoryRespositery;
+  selectedCategory:Category = null;
 
   ngOnInit(): void {}
+
+  displayAll = true;
+
+  selectCategory(item?:Category){
+    if(item){
+      this.selectedCategory = item;
+      this.displayAll = false;
+    }
+    else{
+      this.selectedCategory = null;
+      this.displayAll=true;
+    }
+  }
 }

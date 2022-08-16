@@ -40,7 +40,8 @@
           <p class="card-text">
             {{ movie.datePublished | date: "dd/MM/y" }}
           </p>
-          <button class="btn btn-sm btn-outline-primary">Details</button>
+          <button class="btn btn-outline-primary">Details</button>
+          <button (click)="addToList($event ,movie)" class="btn btn-primary ms-2">Add to List</button>
         </div>
       </div>
     </div>
