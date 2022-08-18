@@ -1,8 +1,14 @@
 <div div class="list-group">
-  <a (click)="selectCategory()" [class.active]="displayAll" href="#" class="list-group-item list-group-item-active active"
+  <a
+    routerLink="/"
+    (click)="selectCategory()"
+    [class.active]="displayAll"
+    href="#"
+    class="list-group-item list-group-item-active active"
     >Tüm Kategoriler</a
   >
   <a
+    routerLink="movies/category/{{ category.id }}"
     *ngFor="let category of categories"
     href="#"
     (click)="selectCategory(category)"

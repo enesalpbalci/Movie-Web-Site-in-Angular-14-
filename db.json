@@ -1,0 +1,70 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Film 1",
+      "description": "Film 1 Açıklama",
+      "imageUrl": "1.jpeg",
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "title": "Film 2",
+      "description": "Film 2 Açıklama Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam veritatis pariatur impedit ad repellendus? Praesentium dolorum modi reprehenderit voluptas sunt? Quasi itaque aliquam dignissimos similique eaque, consequuntur voluptatum quos sit.",
+      "imageUrl": "2.jpeg",
+      "categoryId": 2
+    },
+    {
+      "id": 3,
+      "title": "Film 3",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam veritatis pariatur impedit ad repellendus? Praesentium dolorum modi reprehenderit voluptas sunt? Quasi itaque aliquam dignissimos similique eaque, consequuntur voluptatum quos sit.",
+      "imageUrl": "3.jpeg",
+      "categoryId": 3
+    },
+    {
+      "id": 4,
+      "title": "Film 4",
+      "description": "Film 4 Açıklama Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam veritatis pariatur impedit ad repellendus? Praesentium dolorum modi reprehenderit voluptas sunt? Quasi itaque aliquam dignissimos similique eaque, consequuntur voluptatum quos sit.",
+      "imageUrl": "4.jpeg",
+      "categoryId": 4
+    },
+    {
+      "id": 5,
+      "title": "Film 5",
+      "description": "Film 5 Açıklama",
+      "imageUrl": "5.jpeg",
+      "categoryId": 5
+    },
+    {
+      "id": 6,
+      "title": "film 9",
+      "description": "asdasdasd",
+      "imageUrl": "1.jpeg",
+      "isPopular": false,
+      "datePublish": 1660834537923,
+      "categoryId": "1"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Macera"
+    },
+    {
+      "id": 2,
+      "name": "Romantik"
+    },
+    {
+      "id": 3,
+      "name": "Bilim Kurgu"
+    },
+    {
+      "id": 4,
+      "name": "Komedi"
+    },
+    {
+      "id": 5,
+      "name": "Savaş"
+    }
+  ]
+}

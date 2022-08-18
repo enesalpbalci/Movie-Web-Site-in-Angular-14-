@@ -1,28 +1,45 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie-repository';
 import { AlertifyService } from '../services/alertify.service';
+import { MovieService } from '../services/movice.service';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.css'],
+  providers: [MovieService],
 })
 export class MoviesComponent implements OnInit {
   title = 'Film Listesi';
-  movies: Movie[];
-  popularMovies: Movie[];
+  movies: Movie[] = [];
+  popularMovies: Movie[] = [];
   movieRepository: MovieRepository;
 
   filterText: string = '';
-
-  constructor(private alertify: AlertifyService) {
-    this.movieRepository = new MovieRepository();
-    this.movies = this.movieRepository.getMovies();
-    this.popularMovies = this.movieRepository.getPopularMovies();
+  errorMessage: any;
+  constructor(
+    private alertify: AlertifyService,
+    private movieService: MovieService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    // this.popularMovies = this.movieRepository.getPopularMovies();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.movieService.getMovies(params['categoryId']).subscribe(
+        data => {
+          this.movies = data;
+        },
+        error => {
+          this.errorMessage = error;
+        }
+      );
+    });
+  }
 
   addToList($event: any, movie: Movie) {
     if ($event.target.classList.contains('btn-primary')) {
