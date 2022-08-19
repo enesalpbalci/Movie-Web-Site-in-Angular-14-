@@ -1,39 +1,70 @@
 <h1>Create Movie</h1>
 
-<form #form="ngForm" (ngSubmit)="createMovie()">
-    <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input required minlength="4" #title="ngModel" type="text" [(ngModel)]="model.title" name="title" class="form-control">
-        <div class="alert alert-danger" *ngIf="title.invalid && title.touched">
-            <p *ngIf="title.errors.required">
-                gerekli alan
-            </p>
-            <p *ngIf="title.errors.minlength">min 5 karakter olamalı</p>
-        </div>
+<form [formGroup]="movieForm" #form="ngForm" (ngSubmit)="createMovie()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      name="title"
+      class="form-control"
+      formControlName="title"
+    />
+    <div
+      class="alert alert-danger p-0 d-flex my-2"
+      *ngIf="title.invalid && title.touched"
+    >
+      <span *ngIf="title.errors.required"> gerekli alan </span>
+      <span *ngIf="title.errors.minlength">min 5 karakter olamalı</span>
     </div>
-    <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea required #description="ngModel" class="form-control" [(ngModel)]="model.description" name="description"></textarea>
-        <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
-            gerekli alan
-        </div>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea
+      class="form-control"
+      name="description"
+      formControlName="description"
+    ></textarea>
+    <div
+      class="alert alert-danger p-0 d-flex my-2"
+      *ngIf="description.invalid && description.touched"
+    >
+      <span *ngIf="description.errors.required"> gerekli alan </span>
+      <span *ngIf="description.errors.minlength">min 5 karakter olamalı</span>
     </div>
-    <div class="mb-3">
-        <label for="imageUrl" class="form-label">ImageUrl</label>
-        <input type="text" #imageUrl="ngModel" [(ngModel)]="model.imageUrl" class="form-control" name="imageUrl">
-        <div class="alert alert-danger" *ngIf="imageUrl.invalid && imageUrl.touched">
-            gerekli alan
-        </div>
+  </div>
+  <div class="mb-3">
+    <label for="imageUrl" class="form-label">ImageUrl</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="imageUrl"
+      name="imageUrl"
+    />
+  </div>
+  <div
+    class="alert alert-danger p-0 d-flex my-2"
+    *ngIf="imageUrl.invalid && imageUrl.touched"
+  >
+    <span *ngIf="imageUrl.errors.required"> gerekli alan </span>
+    <span *ngIf="imageUrl.errors.wrongExtension">
+      resim uzantısı hatalı
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="categoryId" class="form-label">Category</label>
+    <select class="form-select" name="categoryId" formControlName="categoryId">
+      <option value="">Seçiniz</option>
+      <option [value]="item.id" *ngFor="let item of categories">
+        {{ item.name }}
+      </option>
+    </select>
+    <div
+      class="alert alert-danger p-0 d-flex my-2"
+      *ngIf="categoryId.invalid && categoryId.touched"
+    >
+      <span *ngIf="categoryId.errors.required"> gerekli alan </span>
     </div>
-    <div class="mb-3">
-        <label for="categoryId" class="form-label">Category</label>
-        <select required=""[(ngModel)]="model.categoryId" class="form-select" #categoryId="ngModel" name="categoryId">
-            <option value="">Seçiniz</option>
-            <option [value]="item.id" *ngFor="let item of categories">{{item.name}}</option>
-        </select>
-        <div class="alert alert-danger" *ngIf="categoryId.invalid && categoryId.touched">
-            gerekli alan
-        </div>
-    </div>
-    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Create</button>
+  </div>
+  <button [disabled]="!movieForm.valid" type="submit" class="btn btn-primary">Create</button>
+  <button (click)="clearForm()" class="btn btn-warning">Clear</button>
 </form>

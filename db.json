@@ -43,6 +43,24 @@
       "isPopular": false,
       "datePublish": 1660834537923,
       "categoryId": "1"
+    },
+    {
+      "id": 7,
+      "title": "Film 8",
+      "description": "açıklamar",
+      "imageUrl": "3.jpeg",
+      "isPopular": false,
+      "datePublish": 1660927087270,
+      "categoryId": "3"
+    },
+    {
+      "id": 8,
+      "title": "film 10",
+      "description": "a",
+      "imageUrl": "5.jpeg",
+      "isPopular": false,
+      "datePublish": 1660931707789,
+      "categoryId": "1"
     }
   ],
   "categories": [
