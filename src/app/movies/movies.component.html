@@ -1,10 +1,19 @@
 <div class="mb-3">
-    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterText" name="" id="">
-    <small class="text-muted" *ngIf="filterText">Aradığınız kelime: {{filterText}}</small>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search..."
+    [(ngModel)]="filterText"
+    name=""
+    id=""
+  />
+  <small class="text-muted" *ngIf="filterText"
+    >Aradığınız kelime: {{ filterText }}</small
+  >
 </div>
 
 <div class="alert alert-danger" *ngIf="errorMessage">
-    {{errorMessage}}
+  {{ errorMessage }}
 </div>
 
 <ng-template
@@ -12,19 +21,20 @@
   [ngTemplateOutletContext]="{ movies: popularMovies }"
 >
 </ng-template>
-<div *ngIf="movies.length > 0; else noMovies">
-  <div class="alert alert-success">{{ movies.length }} Adet Film Bulundu</div>
+<div *ngIf="!loading">
+  <div *ngIf="movies.length > 0; else noMovies">
+    <div class="alert alert-success">{{ movies.length }} Adet Film Bulundu</div>
 
-  <ng-template [ngTemplateOutlet]="movieList1"></ng-template>
+    <ng-template [ngTemplateOutlet]="movieList1"></ng-template>
+  </div>
 </div>
-
 <ng-template #noMovies>
   <div class="alert alert-danger">Film Bulunamadı</div>
 </ng-template>
 
 <ng-template #movieList1>
   <h2>{{ title }}</h2>
-  <div class="card mb-3" *ngFor="let movie of movies | movieFilter:filterText">
+  <div class="card mb-3" *ngFor="let movie of movies | movieFilter: filterText">
     <div class="row">
       <div class="col-md-3">
         <img
@@ -44,8 +54,15 @@
           <!-- <p class="card-text">
             {{ movie.datePublished | date: "dd/MM/y" }}
           </p> -->
-          <a routerLink="/movies/{{movie.id}}" class="btn btn-outline-primary">Details</a>
-          <button (click)="addToList($event ,movie)" class="btn btn-primary ms-2">Add to List</button>
+          <a routerLink="/movies/{{ movie.id }}" class="btn btn-outline-primary"
+            >Details</a
+          >
+          <button
+            (click)="addToList($event, movie)"
+            class="btn btn-primary ms-2"
+          >
+            Add to List
+          </button>
         </div>
       </div>
     </div>
@@ -67,10 +84,14 @@
             <h2>{{ item.title | uppercase }}</h2>
           </div>
           <p class="card-text">
-            {{ item.description | summary : 10 }}
+            {{ item.description | summary: 10 }}
           </p>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
+
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>

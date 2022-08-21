@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie';
 import { MovieRepository } from '../models/movie-repository';
 import { AlertifyService } from '../services/alertify.service';
-import { MovieService } from '../services/movice.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
@@ -18,6 +18,8 @@ export class MoviesComponent implements OnInit {
   popularMovies: Movie[] = [];
   movieRepository: MovieRepository;
 
+  loading: boolean = false;
+
   filterText: string = '';
   errorMessage: any;
   constructor(
@@ -30,12 +32,15 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
+      this.loading = true;
       this.movieService.getMovies(params['categoryId']).subscribe(
-        data => {
+        (data) => {
           this.movies = data;
+          this.loading=false;
         },
-        error => {
+        (error) => {
           this.errorMessage = error;
+          this.loading=false
         }
       );
     });

@@ -5,7 +5,7 @@ import { Category } from '../models/category';
 import { Movie } from '../models/movie';
 import { AlertifyService } from '../services/alertify.service';
 import { CategoryService } from '../services/category.service';
-import { MovieService } from '../services/movice.service';
+import { MovieService } from '../services/movie.service';
 import { ImageValidator } from '../validators/image.validator';
 
 @Component({
@@ -65,7 +65,7 @@ export class MovieCreateComponent implements OnInit {
     };
 
     this.movieService.createMovie(movie).subscribe((data) => {
-      this.router.navigate(['/movies', data.id]);
+      this.router.navigate(['/movies']);
     });
   }
 
